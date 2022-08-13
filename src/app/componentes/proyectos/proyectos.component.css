@@ -1,0 +1,39 @@
+.contendor{
+    background: rgba(43, 43, 43, 0.2);
+    position: relative;
+    top: 60px;
+    left: 25%;
+    width: 75%;
+    min-height: 100vh;
+    padding: 20px;
+    font-family: 'Bebas Neue', cursive;
+    color: #FFFFFA;
+}
+
+.titulo{
+    color:#FB5012;
+    padding-right: 10px;
+    /* position: absolute; */
+    position: relative;
+    border-bottom: 5px solid white;
+    
+    
+}
+
+span{
+    color:#FB5012
+}
+
+h5{
+    margin-top: 10px;
+}
+
+.tablas{
+    background: rgba(43, 43, 43, 0.4); 
+    
+}
+
+.tabla{
+    background: rgba(43, 43, 43, 0.4);
+    margin-top: 8px;
+}
