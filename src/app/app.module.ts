@@ -10,6 +10,8 @@ import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +25,7 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

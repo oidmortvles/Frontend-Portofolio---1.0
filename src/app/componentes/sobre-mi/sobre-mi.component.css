@@ -1,5 +1,5 @@
 .contendor{
-    background: rgba(43, 43, 43, 0.2);
+    background: var(--color-transp);
     position: relative;
     top: 60px;
     left: 25%;
@@ -7,21 +7,21 @@
     min-height: 100vh;
     padding: 20px;
     font-family: 'Bebas Neue', cursive;
-    color: #FFFFFA;
+    color: var(--color-terc);
 }
 
 .titulo{
-    color:#FB5012;
+    color:var(--color-sec);
     padding-right: 10px;
     /* position: absolute; */
     position: relative;
-    border-bottom: 5px solid white;
+    border-bottom: 5px solid var(--color-terc);
     
     
 }
 
 span{
-    color:#FB5012
+    color:var(--color-sec)
 }
 
 h5{
@@ -29,7 +29,7 @@ h5{
 }
 
 .card{
-    background-color:#1a1919;
+    background-color:var(--color-prim);
 }
 
 img{
@@ -45,16 +45,35 @@ img{
 
 
 .tablas{
-    background: rgba(43, 43, 43, 0.4); 
+    background: var(--color-box);
+    padding-bottom: 30px; 
     
 }
 
 .tabla{
-    background: rgba(43, 43, 43, 0.4);
+    background: var(--color-box);
     margin-top: 8px;
 }
 
 .progress-bar{
-    background-color: #FB5012;
+    background-color: var(--color-sec);
+    
    
+}
+
+button{
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: var(--color-terc);
+    border-radius: 50%;
+    
+}
+
+
+
+button:hover{
+    color: var(--color-sec);
+    
+    
 }

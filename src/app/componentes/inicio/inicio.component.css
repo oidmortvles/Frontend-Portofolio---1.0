@@ -1,5 +1,5 @@
 .contendor{
-    background: rgba(43, 43, 43, 0.2);
+    background: var(--color-transp);
     position: relative;
     top: 60px;
     left: 25%;
@@ -7,27 +7,27 @@
     min-height: 100vh;
     padding: 20px;
     font-family: 'Bebas Neue', cursive;
-    color: #FFFFFA;
+    color: var(--color-terc);
 }
 
 .titulo{
-    color:#FB5012;
+    color:var(--color-sec);
     padding-right: 10px;
     /* position: absolute; */
     position: relative;
-    border-bottom: 5px solid white;
+    border-bottom: 5px solid var(--color-terc);
 }
 
 
 span{
-    color:#FB5012;
+    color:var(--color-sec);
 }
 
 .container--fluid{
     
     text-align: left;   
     padding: 0px;
-    background: rgba(43, 43, 43, 0.4);
+    background: var(--color-box);
     
     
 }

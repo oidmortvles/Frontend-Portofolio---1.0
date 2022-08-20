@@ -1,4 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+    --color-prim:#1a1919;
+    --color-sec:#FB5012;
+    --color-terc:#FFFFFA;
+    --color-transp:rgba(43, 43, 43, 0.2);
+    --color-box:rgba(43, 43, 43, 0.4);
+}
+
+
 body{
     background-color: #171614;
     background-image: url(../src/assets/arg-prog-logo.png);

@@ -1,14 +1,14 @@
 .menu-entero{
     font-family: 'Bebas Neue', cursive;
-    color: #FFFFFA;
-    background: rgba(43, 43, 43, 0.4);
+    color: var(--color-terc);
+    background: var(--color-transp)
        
     
 
 }
 
 .material-icons-round{
-    color: antiquewhite;
+    color: var(--color-terc);
     
 }
 
@@ -17,7 +17,7 @@
   padding: 0;
   z-index: 200;
   padding: 0;
-  background-color:#1a1919;
+  background-color:var(--color-prim);
   
   
 }
@@ -30,13 +30,13 @@ margin: 0;
 }
 
 .btn{
-    background-color: #FB5012;
+    background-color:var(--color-sec);
     border: none;
 }
 
 
 .conter{
-    background: rgba(43, 43, 43, 0.2);
+    background: var(--color-transp);
     min-height: 100vh;
     width: 25%;
     z-index: 100;
@@ -47,10 +47,12 @@ margin: 0;
     text-align: center;
     justify-content:center;
     align-items: center;
+    
+    
 }
 
 h1{
-    color:#FB5012;
+    color:var(--color-sec);
     
     /* font-family: 'Roboto Slab', serif; */
 }
@@ -59,23 +61,23 @@ h1{
 a{
     margin-top: 10px;
     padding: 5px;
-    color: #FFFFFA;
+    color: var(--color-terc);
     border-bottom: 0.5px solid #383838;
     
 }
 
 a:hover{
-    color:#FB5012;
-    border-bottom: 0.5px solid #FFFFFA
+    color:var(--color-sec);
+    border-bottom: 0.5px solid var(--color-terc)
 }
 
 
 .modal{
-    background: rgba(43, 43, 43, 0.2)
+    background: var(--color-transp)
 }
 
 .modal-content{
-    background-color: rgb(36, 36, 36);
+    background-color: var(--color-prim);
 }
 
 ::placeholder{
