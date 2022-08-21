@@ -83,3 +83,21 @@ a:hover{
 ::placeholder{
     opacity: 0.3;
 }
+
+footer{
+    color: var(--color-terc);
+    background-color: var(--color-prim);
+    height: 30px;
+    z-index: 200;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:20px;
+    width:100%;
+    font-size: smaller;
+    padding: 3px;
+    text-align: center;
+
+
+}
+
