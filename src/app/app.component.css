@@ -80,6 +80,10 @@ a:hover{
     background-color: var(--color-prim);
 }
 
+.modal-dialog{
+    margin-top: 20vh;
+}
+
 ::placeholder{
     opacity: 0.3;
 }
@@ -99,5 +103,9 @@ footer{
     text-align: center;
 
 
+}
+
+.activo{
+    color:var(--color-sec);
 }
 

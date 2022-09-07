@@ -3,48 +3,57 @@
     
         <div class="container-fluid">
         
-          <h6> <img src="../../../assets/arg-prog-logo.png" class="logo fs-3" alt="">#YoProgramo</h6>
+              <h6> <img src="../../../assets/arg-prog-logo.png" class="logo fs-3" alt="">#YoProgramo</h6>
         
              
-              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">LOGIN</button>    
+              <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">INICIAR SESION</button>
+                 
         </div>
         
     </nav>
 
     <!-- MODAL LOGIN-->
 
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="staticBackdropLabel">LOGIN</h5>
-              
-            </div>
-
-            
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="exampleInputEmail1" class="form-label">USUARIO</label>
-                  <input type="email" class="form-control" placeholder="Mail o Usuario" id="exampleInputEmail1" aria-describedby="emailHelp">
-                  <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
-                </div>
-                <div class="mb-3">
-                  <label for="exampleInputPassword1"  class="form-label">CLAVE</label>
-                  <input type="password" class="form-control" placeholder="Contraseña" id="exampleInputPassword1">
-                </div>
-                
-                
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">INICIAR SESION</button>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
-              
-            </div>
-          </div>
-        </div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <form [formGroup]="formLogin" (ngSubmit)="send()">
+  
+      <div class="modal-dialog modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">INICIAR SESION</h5>
+        
       </div>
+
+      
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="email" class="form-label">USUARIO</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="Mail" id="email" aria-describedby="emailHelp">
+            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+          </div>
+          <div class="mb-3">
+            <label for="clave"  class="form-label">CLAVE</label>
+            <input type="password" class="form-control" formControlName="clave" placeholder="Contraseña" id="clave">
+          </div>
+          
+          
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">INICIAR SESION</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+        
+      </div>
+    </div>
+  </div>
+
+  </form>
+</div>
+
+
+    
         
         <!-- MENU LATERAL -->
         <div class="conter">
@@ -53,16 +62,18 @@
         
         <nav class="caja-menu">
             <h1 class="fs-1">DANIEL PEREYRA</h1>
-            <a class="nav-link active fs-3" routerLink="inicio">INICIO</a>
-            <a class="nav-link fs-3" routerLink="sobre-mi">SOBRE MI</a>
-            <a class="nav-link fs-3" routerLink="proyectos">PROYECTOS</a>
-            <a class="nav-link fs-3" routerLink="contacto">CONTACTO</a>
+            <a class="nav-link active fs-3" routerLink="inicio" routerLinkActive="activo">INICIO</a>
+            <a class="nav-link fs-3" routerLink="sobre-mi" routerLinkActive="activo">SOBRE MI</a>
+            <a class="nav-link fs-3" routerLink="proyectos" routerLinkActive="activo">PROYECTOS</a>
+            <a class="nav-link fs-3" routerLink="contacto" routerLinkActive="activo">CONTACTO</a>
 
         </nav>
     
             
     
     </div>
+
+    <!-- FOOTER -->
 
     <footer>
       <div>
@@ -75,3 +86,4 @@
 
 
 <router-outlet></router-outlet>
+
