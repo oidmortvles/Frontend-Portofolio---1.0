@@ -10,13 +10,26 @@ export class UsuarioService {
 
   constructor(private httpClient:HttpClient ) { }
 
-  public guardarUsuario(usuario:any){
-    return this.httpClient.post(`${baseUrl}/usuario/new`,usuario);
+  //USUARIO
+  public traerUsuario(){
+    return this.httpClient.get(`${baseUrl}/usuario`);
   }
 
-  public TraerUsuarios(url:'/usuario'){
-    return this.httpClient.get(url)
+  public editarUsuario(user : any){
+    return this.httpClient.put(`${baseUrl}/usuario/edit`,user);
   }
+
+  //SKILL
+
+  public traerSkills () {
+    return this.httpClient.get(`${baseUrl}/skills`)
+  }
+
+  public traerSkill () {
+    return this.httpClient.get(`${baseUrl}/skills`)
+  }
+
+
 
 
 }

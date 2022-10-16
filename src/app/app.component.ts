@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Component} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import baseUrl from './servicios/base';
+import { LoginServiceService } from './servicios/login-service.service';
+
 
 
 @Component({
@@ -7,32 +11,50 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent{  
   
-  formLogin!:FormGroup;
+  formLogin:FormGroup;
+  
+ 
 
-  constructor(private readonly fb:FormBuilder) { }
+
+  constructor(private formBuilder: FormBuilder,private loginService:LoginServiceService) {
+    this.formLogin= this.formBuilder.group({
+      username: new FormControl ("",[Validators.required]),
+      password : new FormControl ("", [Validators.required,Validators.minLength(3),Validators.maxLength(15)])
+
+    })
+}
 
   ngOnInit(): void {
+}
 
-    this.formLogin= this.initForm();
+loginData= {
+  username: "argentinaprograma",
+  password: "argentina"}
+    
 
+    Login(){
+
+      if (this.formLogin.value.username == this.loginData.username && 
+        this.formLogin.value.password == this.loginData.password ){
+
+          this.loginService.generarToken(this.loginData).subscribe(
+            (data:any)=>
+           console.log(data));
+            console.log(this.formLogin.value);
+
+        }
+          else{
+            this.formLogin.reset(),
+            console.log("Credenciales no autenticadas")
+          }
+
+      
 
     }
 
- 
-  
-    send():void{
-      console.log('Formulario Ok')
-    }
-
-    initForm():FormGroup{
-      return this.fb.group({
-        email: ['',[Validators.required,Validators.email]],
-        clave: ['',[Validators.required,Validators.minLength(6)]]
-
-      })
-    }
+   
  
   
 }
