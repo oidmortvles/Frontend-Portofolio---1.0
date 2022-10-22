@@ -61,7 +61,7 @@ img{
    
 }
 
-button{
+.agregar{
     text-align: center;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -73,7 +73,45 @@ button{
 
 
 button:hover{
-    color: var(--color-sec);
+    color: var(--color-terc);
+    background-color:var(--color-sec);
+
     
     
 }
+
+.modal{
+    background: var(--color-transp)
+}
+
+.modal-content{
+    background-color: var(--color-prim);
+}
+
+.modal-dialog{
+    margin-top: 20vh;
+}
+
+.btn{
+    background-color:var(--color-terc);
+    border: none;
+    color: var(--color-prim);
+}
+
+.modal-title{
+    color: var(--color-sec); 
+}
+
+.form-label{
+    color: var(--color-terc);
+}
+
+.date{
+    padding:0;
+}
+
+.calendario{
+    margin-left: 1em;
+}
+
+

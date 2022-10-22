@@ -2,14 +2,84 @@
     <h3 class="fs-1 titulo">SOBRE MI</h3>
 
     <div class="container">
+      
         <div class="row align-items-star">
           <div class="col-12 col-lg-6 m-x-5 tablas">
               <!-- BOX EDUCACION -->
                 <span class="fs-2">EDUCACIÓN</span>
 
                 <!-- BOTON EDICION -->
-                <button type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-plus"></i></button>
+                
+                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#educacion"><i class="bi bi-folder-plus"></i></button>
+                
                 <br>
+                
+
+<!-- MODAL -->
+<div class="modal fade" id="educacion" tabindex="-1" role="dialog" aria-labelledby="educacion" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="educacion">AGREGAR EDUCACIÓN</h5>
+        
+        
+      </div>
+      
+      <div class="modal-body">
+       <!-- FORMULARIO -->
+       <form>
+
+        <div class="mb-3">
+          <label for="titulo" class="form-label">TÍTULO OBTENIDO</label>
+          <input type="text" class="form-control" id="titulo">
+          
+        </div>
+
+        <div class="mb-3">
+          <label for="institucion" class="form-label">INSTITUCIÓN</label>
+          <input type="text" class="form-control" id="institucion">
+          
+        </div>
+
+        <div class="mb-3">
+          <div class="form-check date">
+            FECHA DE INICIO
+            <input type="date" class="calendario" name="fechaesperada"> 
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="cursando1">
+            <label class="form-check-label" for="cursando1">
+              EN CURSO
+            </label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="finalizado" checked>
+            <label class="form-check-label" for="finalizado">
+              FINALIZADO
+            </label>
+          </div>
+          
+        </div>
+
+        <div class="mb-3">
+          <span class="inserte">INSERTE IMAGEN DE LA INSTITUCIÓN</span>
+          <input type="file" class="form-control" id="imagen-institucion">
+          
+        </div>
+        
+        
+      </form>
+
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+      </div>
+    </div>
+  </div>
+</div>
 
                 <!-- TARJETAS -->
 
@@ -27,8 +97,8 @@
                           
                           <!-- BOTONES DE EDICION -->
 
-                          <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-x"></i></button>
-                          <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-minus"></i></button>
+                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
 
                         </div>
                       </div>
@@ -36,20 +106,7 @@
                 </div>
 
 
-                <div class="card mb-3" style="max-width: 540px;">
-                    <div class="row g-0">
-                      <div class="col-md-3 d-flex align-items-center caja-foto">
-                        <img src="../../../assets/logo-edu.jpg" class="img-fluid" alt="...">
-                      </div>
-                      <div class="col-md-9">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                      </div>
-                    </div>
-                </div>
+                
                 
             </div>
 
@@ -59,8 +116,92 @@
                 <span class="fs-2">EXPERIENCIA</span>
 
                 <!-- BOTON EDICION -->
-                <button type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-plus"></i></button>
+                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#experiencia"><i class="bi bi-folder-plus"></i></button>
                 <br>
+
+                <!-- MODAL -->
+                <div class="modal fade" id="experiencia" tabindex="-1" role="dialog" aria-labelledby="experiencia" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="experiencia">AGREGAR EXPERIENCIA</h5>
+                        
+                        
+                      </div>
+                      
+                      <div class="modal-body">
+                       <!-- FORMULARIO -->
+                       <form>
+                
+                        <div class="mb-3">
+                          <label for="empresa" class="form-label">NOMBRE DE LA EMPRESA U ORGANISMO</label>
+                          <input type="text" class="form-control" id="empresa">
+                          
+                        </div>
+                
+                        <div class="mb-3">
+                          <label for="cargo" class="form-label">CARGO</label>
+                          <input type="text" class="form-control" id="cargo">
+                          
+                        </div>
+                
+                        <div class="mb-3">
+                          <div class="form-check date">
+                            INICIO DE ACTIVIDADES
+                            <input type="date" class="calendario" name="inicio-empresa"> 
+                          </div>
+
+                          <br>
+                
+                          <div class="form-check date">
+                            <div class="form-check date">
+                              FIN DE ACTIVIDADES
+                              <input type="date" class="calendario" name="finalizar-empresa"> 
+                            </div>
+                          </div>
+
+                          <br>
+
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="actualmentexp" id="actualmentexp">
+                            <label class="form-check-label" for="actualmentexp">
+                              ACTUALMENTE TRABAJANDO
+                            </label>
+                          </div>
+
+                          <br>
+
+                          <div class="mb-3">
+                            DESCRIPCIÓN DEL CARGO
+                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                            
+                          </div>
+                          
+                        </div>
+                
+                        <div class="mb-3">
+                          <span class="inserte">INSERTE IMAGEN DE LA EMPRESA</span>
+                          <input type="file" class="form-control" id="imagen-empresa">
+                          
+                        </div>
+                        
+                        
+                      </form>
+                
+                    </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+                <!-- TARJETAS -->
 
                 <div class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
@@ -75,8 +216,8 @@
 
                           <!-- BOTONES DE EDICION -->
 
-                            <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-x"></i></button>
-                            <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-minus"></i></button>
+                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
                           
                         </div>
                       </div>
@@ -97,43 +238,74 @@
               <!-- BOX SKILL -->
                 <span class="fs-2">SKILLS</span>
                 
+                                
                 <!-- BOTON EDICION -->
-                <button type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-plus"></i></button>
-            </div>
+                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#skill"><i class="bi bi-folder-plus"></i></button>
+
+              </div>
 
             <div class="col-12 tablas">
+              
             
                 <h5>JAVASCRIPT</h5>
                 
                 <!-- BOTONES DE EDICION -->
 
-                <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-x"></i></button>
-                <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-minus"></i></button>
+                <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
                 
                 <div class="progress" style="height: 30px;">
                     <div class="progress-bar" role="progressbar" aria-label="Example 20px high" 
                     style="width: 26%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
 
-                <h5>JAVASCRIPT</h5>
-
-                <!-- BOTONES DE EDICION -->
-
-                <button type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-x"></i></button>
-                <button  type="button" class="btn btn-outline-light btn-sm"><i class="bi bi-folder-minus"></i></button>
                 
-                <div class="progress" style="height: 30px;">
-                    <div class="progress-bar" role="progressbar" aria-label="Example 20px high" 
-                    style="width: 12%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    
-                </div>
 
             </div>
 
-
-
+        
         </div>
 
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade" id="skill" tabindex="-1" role="dialog" aria-labelledby="skill" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">AGREGAR SKILL</h5>
+            
+            
+          </div>
+          
+          <div class="modal-body">
+           <!-- FORMULARIO -->
+           <form>
+    
+            <div class="mb-3">
+              <label for="habilidad" class="form-label">SKILL</label>
+              <input type="text" class="form-control" id="habilidad">
+              
+            </div>
+    
+                
+            <div class="mb-3">
+              
+              <label for="dominio" class="form-label">DOMINIO DEL SKILL</label>
+              <input type="range" class="form-range" min="0" max="100" step="1" id="dominio">
+              
+            </div>
+            
+            
+          </form>
+    
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     

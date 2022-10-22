@@ -8,7 +8,7 @@ import { ProyectosComponent } from './componentes/proyectos/proyectos.component'
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PortfolioInterceptor } from './interceptors/interceptor';
+import { authInterceptorProviders } from './servicios/auth-interceptor';
 
 
 
@@ -31,13 +31,7 @@ import { PortfolioInterceptor } from './interceptors/interceptor';
     
 
   ],
-  providers: [
-    {
-      provide:HTTP_INTERCEPTORS,
-      useClass:PortfolioInterceptor,
-      multi:true
-    }
-  ],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -14,46 +14,54 @@ import { LoginServiceService } from './servicios/login-service.service';
 export class AppComponent{  
   
   formLogin:FormGroup;
-  
- 
-
 
   constructor(private formBuilder: FormBuilder,private loginService:LoginServiceService) {
     this.formLogin= this.formBuilder.group({
-      username: new FormControl ("",[Validators.required]),
+      username: new FormControl ("",[Validators.required,Validators.minLength(5)]),
       password : new FormControl ("", [Validators.required,Validators.minLength(3),Validators.maxLength(15)])
 
     })
-}
+    }
 
   ngOnInit(): void {
-}
+  }
 
-loginData= {
+  loginData= {
   username: "argentinaprograma",
   password: "argentina"}
     
+  public Reset(){
+      this.formLogin.reset()
+    }
 
-    Login(){
+    public Login(){
 
       if (this.formLogin.value.username == this.loginData.username && 
         this.formLogin.value.password == this.loginData.password ){
 
           this.loginService.generarToken(this.loginData).subscribe(
-            (data:any)=>
-           console.log(data));
-            console.log(this.formLogin.value);
+            (data:any)=>{console.log(data)
+            this.loginService.sesion(data.accessToken)
+          console.log(data.accessToken)},
+           
+            (error)=> console.log(error)
 
-        }
-          else{
+        )}
+          
+        else{
             this.formLogin.reset(),
-            console.log("Credenciales no autenticadas")
+            console.log("Credenciales no validas"),
+            console.log(this.formLogin.value);
           }
+      }
 
-      
 
-    }
+      public cerrarSesion(){
+        this.loginService.cerrarSesion();
+        window.location.reload();
+      }
 
+    
    
  
   

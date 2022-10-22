@@ -6,7 +6,9 @@
               <h6> <img src="../../../assets/arg-prog-logo.png" class="logo fs-3" alt="">#YoProgramo</h6>
         
              
-              <button type="button" class="btn btn-secondary"  routerLink="login" data-bs-toggle="modal" data-bs-target="#staticBackdrop">INICIAR SESION</button>
+              <button type="button" class="btn btn-secondary"  routerLink="login" data-bs-toggle="modal" data-bs-target="#staticBackdrop">INICIAR SESIÓN</button>
+              
+
                  
         </div>
         
@@ -34,7 +36,7 @@
           </div>
           <div class="mb-3">
             <label for="password"  class="form-label">CONTRASEÑA</label>
-            <input type="text" class="form-control" formControlName="password" placeholder="Contraseña" id="password">
+            <input type="password" class="form-control" formControlName="password" placeholder="Contraseña" id="password">
           </div>
           
           
@@ -43,7 +45,7 @@
       </div>
       <div class="modal-footer">
         <button type="button"  [disabled]="formLogin.invalid" class="btn btn-secondary" data-bs-dismiss="modal" type="submit">INICIAR SESION</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="Reset()">ANULAR</button>
         
       </div>
     </div>
