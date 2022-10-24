@@ -7,7 +7,7 @@ import { SobreMiComponent } from './componentes/sobre-mi/sobre-mi.component';
 import { ProyectosComponent } from './componentes/proyectos/proyectos.component';
 import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './servicios/auth-interceptor';
 
 
@@ -28,6 +28,7 @@ import { authInterceptorProviders } from './servicios/auth-interceptor';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+  
     
 
   ],

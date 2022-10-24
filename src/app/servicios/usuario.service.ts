@@ -19,15 +19,6 @@ export class UsuarioService {
     return this.httpClient.put(`${baseUrl}/usuario/edit`,user);
   }
 
-  //SKILL
-
-  public traerSkills () {
-    return this.httpClient.get(`${baseUrl}/skills`)
-  }
-
-  public traerSkill () {
-    return this.httpClient.get(`${baseUrl}/skills`)
-  }
 
 
 

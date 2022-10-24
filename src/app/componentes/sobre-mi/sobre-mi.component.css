@@ -114,4 +114,19 @@ button:hover{
     margin-left: 1em;
 }
 
+.card-title{
+    color: var(--color-sec);
+}
 
+progress{
+    width: 100%;
+    
+}
+
+progress[value]::-webkit-progress-bar {
+    background-color: var(--color-terc);
+  }
+
+  progress[value]::-webkit-progress-value {
+    background-color: var(--color-sec);
+  }

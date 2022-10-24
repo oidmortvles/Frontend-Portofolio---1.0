@@ -10,7 +10,7 @@
 
                 <!-- BOTON EDICION -->
                 
-                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#educacion"><i class="bi bi-folder-plus"></i></button>
+                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#educacion"><i class="bi bi-folder-plus"></i></button>
                 
                 <br>
                 
@@ -27,46 +27,37 @@
       
       <div class="modal-body">
        <!-- FORMULARIO -->
-       <form>
+       <form [formGroup]="educacionForm" (ngSubmit)="agregarEducacion()">
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
           <label for="titulo" class="form-label">TÍTULO OBTENIDO</label>
-          <input type="text" class="form-control" id="titulo">
+          <input formControlName="titulo" type="text" class="form-control" id="titulo">
           
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
           <label for="institucion" class="form-label">INSTITUCIÓN</label>
-          <input type="text" class="form-control" id="institucion">
+          <input type="text" formControlName="institucion" class="form-control" id="institucion">
           
         </div>
 
-        <div class="mb-3">
-          <div class="form-check date">
-            FECHA DE INICIO
-            <input type="date" class="calendario" name="fechaesperada"> 
+        <div class="mb-3 form-group">
+          
+          <div>
+            <input class="me-1" type="radio" id="actual" name="curso" formControlName="actual" value="true"checked>
+            <label for="huey">EN CURSO</label>
           </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="cursando1">
-            <label class="form-check-label" for="cursando1">
-              EN CURSO
-            </label>
-          </div>
-
-          <div class="form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="finalizado" checked>
-            <label class="form-check-label" for="finalizado">
-              FINALIZADO
-            </label>
+      
+          <div>
+            <input class="me-1" type="radio" id="finalizado" name="curso"  formControlName="finalizado" value="true">
+            <label for="dewey">FINALIZADO</label>
           </div>
           
         </div>
 
-        <div class="mb-3">
+        <div class="mb-3 form-group">
           <span class="inserte">INSERTE IMAGEN DE LA INSTITUCIÓN</span>
-          <input type="file" class="form-control" id="imagen-institucion">
-          
+          <input type="text" class="form-control"  formControlName="logoInst" id="imagen-institucion">  
         </div>
         
         
@@ -74,8 +65,8 @@
 
     </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
-        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetEducacion()">ANULAR</button>
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="agregarEducacion()" [disabled]="educacionForm.invalid">GUARDAR CAMBIOS</button>
       </div>
     </div>
   </div>
@@ -83,22 +74,23 @@
 
                 <!-- TARJETAS -->
 
-                <div class="card mb-3" style="max-width: 540px;">
+                <div *ngFor="let e of instituciones" class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                       <div class="col-md-3 d-flex align-items-center caja-foto">
                         <img src="../../../assets/logo-edu.jpg" class="img-fluid" alt="...">
                       </div>
                       <div class="col-md-9">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5> 
+                          <h5 class="card-title">{{e.titulo}}</h5> 
                         
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <p class="card-text">{{e.institucion}}</p>
+                          <p   class="card-text"><small class="text-muted">EN CURSO</small></p>
+                          <p   class="card-text"><small class="text-muted">FINALIZADO</small></p>
                           
                           <!-- BOTONES DE EDICION -->
 
-                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
-                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
 
                         </div>
                       </div>
@@ -116,7 +108,7 @@
                 <span class="fs-2">EXPERIENCIA</span>
 
                 <!-- BOTON EDICION -->
-                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#experiencia"><i class="bi bi-folder-plus"></i></button>
+                <button  *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#experiencia"><i class="bi bi-folder-plus"></i></button>
                 <br>
 
                 <!-- MODAL -->
@@ -190,8 +182,8 @@
                 
                     </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
-                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+                        <button *ngIf="loginService.isLogged()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
+                        <button *ngIf="loginService.isLogged()" type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
                       </div>
                     </div>
                   </div>
@@ -203,21 +195,22 @@
 
                 <!-- TARJETAS -->
 
-                <div class="card mb-3" style="max-width: 540px;">
+                <div *ngFor="let xp of experiencias" class="card mb-3" style="max-width: 540px;">
                     <div class="row g-0">
                       <div class="col-md-3 d-flex align-items-center caja-foto">
                         <img src="../../../assets/logo-edu.jpg" class="img-fluid" alt="...">
                       </div>
                       <div class="col-md-9">
                         <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                          <h5 class="card-title">{{xp.cargo}}</h5>
+                          <p class="card-text">{{xp.descripcion}}</p>
+                          <h6 class="card-title">{{xp.empresa}}</h6>
+                          <p class="card-text"><small class="text-muted">{{xp.inicio}}</small></p>
 
                           <!-- BOTONES DE EDICION -->
 
-                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
-                          <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
                           
                         </div>
                       </div>
@@ -240,26 +233,21 @@
                 
                                 
                 <!-- BOTON EDICION -->
-                <button type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#skill"><i class="bi bi-folder-plus"></i></button>
+                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#skill"><i class="bi bi-folder-plus"></i></button>
 
               </div>
 
-            <div class="col-12 tablas">
+            <div *ngFor="let sk of skills" class="col-12 tablas">
               
             
-                <h5>JAVASCRIPT</h5>
+                <h4>{{sk.skill}}</h4>
                 
                 <!-- BOTONES DE EDICION -->
 
-                <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
-                <button  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
+                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                <button *ngIf="loginService.isLogged()"  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
                 
-                <div class="progress" style="height: 30px;">
-                    <div class="progress-bar" role="progressbar" aria-label="Example 20px high" 
-                    style="width: 26%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-
-                
+                <progress  class="progress" style="height: 30px;" value="{{sk.dominio}}" max="100" aria-valuenow="auto" aria-valuemin="0" aria-valuemax="100"></progress>
 
             </div>
 
@@ -292,7 +280,7 @@
             <div class="mb-3">
               
               <label for="dominio" class="form-label">DOMINIO DEL SKILL</label>
-              <input type="range" class="form-range" min="0" max="100" step="1" id="dominio">
+              <input type="range" class="form-range" min="0" max="100" step="25" id="dominio">
               
             </div>
             

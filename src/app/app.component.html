@@ -6,8 +6,8 @@
               <h6> <img src="../../../assets/arg-prog-logo.png" class="logo fs-3" alt=""> <span class="yoprog"> #YoProgramo</span> </h6>
         
              
-              <button type="button" class="btn btn-secondary"  routerLink="login" data-bs-toggle="modal" data-bs-target="#staticBackdrop">INICIAR SESIÓN</button>
-              
+              <button  *ngIf="!loginService.isLogged()" type="button" class="btn btn-secondary"  routerLink="login" data-bs-toggle="modal" data-bs-target="#staticBackdrop">INICIAR SESIÓN</button>
+              <button *ngIf="loginService.isLogged()" type="button" class="btn btn-secondary"  (click)="cerrarSesion()">CERRAR SESION</button>
 
                  
         </div>
@@ -44,7 +44,7 @@
         
       </div>
       <div class="modal-footer">
-        <button type="button"  [disabled]="formLogin.invalid" class="btn btn-secondary" data-bs-dismiss="modal" type="submit">INICIAR SESION</button>
+        <button   [disabled]="formLogin.invalid" class="btn btn-secondary" data-bs-dismiss="modal" type="submit">INICIAR SESION</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="Reset()">ANULAR</button>
         
       </div>

@@ -15,7 +15,7 @@ export class AppComponent{
   
   formLogin:FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private loginService:LoginServiceService) {
+  constructor(private formBuilder: FormBuilder,public loginService:LoginServiceService) {
     this.formLogin= this.formBuilder.group({
       username: new FormControl ("",[Validators.required,Validators.minLength(5)]),
       password : new FormControl ("", [Validators.required,Validators.minLength(3),Validators.maxLength(15)])
