@@ -41,24 +41,24 @@
           
         </div>
 
+        
+          <div class="form-check date">
+            INICIO DE FORMACION
+            <input formControlName="inicio" type="date" class="calendario" name="inicio"> 
+          </div>
+
         <div class="mb-3 form-group">
           
           <div>
-            <input class="me-1" type="radio" id="actual" name="curso" formControlName="actual" value="true"checked>
+            <input class="me-1" type="checkbox" name="curso" formControlName="actual" value="true" checked>
             <label for="huey">EN CURSO</label>
           </div>
       
-          <div>
-            <input class="me-1" type="radio" id="finalizado" name="curso"  formControlName="finalizado" value="true">
-            <label for="dewey">FINALIZADO</label>
-          </div>
+          
           
         </div>
 
-        <div class="mb-3 form-group">
-          <span class="inserte">INSERTE IMAGEN DE LA INSTITUCIÓN</span>
-          <input type="text" class="form-control"  formControlName="logoInst" id="imagen-institucion">  
-        </div>
+        
         
         
       </form>
@@ -84,14 +84,21 @@
                           <h5 class="card-title">{{e.titulo}}</h5> 
                         
                           <p class="card-text">{{e.institucion}}</p>
-                          <p   class="card-text"><small class="text-muted">EN CURSO</small></p>
-                          <p   class="card-text"><small class="text-muted">FINALIZADO</small></p>
+                          <p   class="card-text"><small class="text-muted">{{e.inicio | date:'y'}} - {{e.actual | cursando}}</small></p>
+                          
                           
                           <!-- BOTONES DE EDICION -->
+                          
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" 
+                            (click)="eliminarEducacion(e.id)">
+                            <i class="bi bi-folder-x"></i>
+                          </button>
 
-                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
-                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
 
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" >
+                            
+                            <i class="bi bi-folder-minus advertencia"></i>
+                          </button>                  
                         </div>
                       </div>
                     </div>
@@ -123,67 +130,60 @@
                       
                       <div class="modal-body">
                        <!-- FORMULARIO -->
-                       <form>
+                       <form [formGroup]="experienciaForm" (ngSubmit)="agregarExperiencia()" >
                 
                         <div class="mb-3">
                           <label for="empresa" class="form-label">NOMBRE DE LA EMPRESA U ORGANISMO</label>
-                          <input type="text" class="form-control" id="empresa">
+                          <input type="text" formControlName="empresa" class="form-control" id="empresa">
                           
                         </div>
                 
                         <div class="mb-3">
-                          <label for="cargo" class="form-label">CARGO</label>
-                          <input type="text" class="form-control" id="cargo">
+                          <label for="cargo" class="form-label">PUESTO</label>
+                          <input type="text" formControlName="cargo" class="form-control" id="cargo">
                           
                         </div>
                 
                         <div class="mb-3">
                           <div class="form-check date">
                             INICIO DE ACTIVIDADES
-                            <input type="date" class="calendario" name="inicio-empresa"> 
+                            <input formControlName="inicio" type="date" class="calendario" name="inicio"> 
                           </div>
 
                           <br>
                 
-                          <div class="form-check date">
-                            <div class="form-check date">
-                              FIN DE ACTIVIDADES
-                              <input type="date" class="calendario" name="finalizar-empresa"> 
-                            </div>
-                          </div>
-
-                          <br>
-
-                          <div class="form-check">
-                            <input class="form-check-input" type="radio" name="actualmentexp" id="actualmentexp">
-                            <label class="form-check-label" for="actualmentexp">
+                           <div class="form-check">
+                            <input formControlName="actual" class="form-check-input" type="checkbox" name="actual" value="true">
+                            <label class="form-check-label" for="actual">
                               ACTUALMENTE TRABAJANDO
                             </label>
                           </div>
 
                           <br>
 
+                          <div class="form-check date">
+                            <div class="form-check date">
+                              FIN DE ACTIVIDADES
+                              <input formControlName="finalDate" type="date" class="calendario" name="finalDate"> 
+                            </div>
+                          </div>
+
+                          <br>
+
                           <div class="mb-3">
                             DESCRIPCIÓN DEL CARGO
-                            <textarea class="form-control" aria-label="With textarea"></textarea>
+                            <textarea formControlName="descripcion" class="form-control" aria-label="With textarea"></textarea>
                             
                           </div>
                           
                         </div>
-                
-                        <div class="mb-3">
-                          <span class="inserte">INSERTE IMAGEN DE LA EMPRESA</span>
-                          <input type="file" class="form-control" id="imagen-empresa">
-                          
-                        </div>
-                        
-                        
+
                       </form>
                 
                     </div>
                       <div class="modal-footer">
-                        <button *ngIf="loginService.isLogged()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
-                        <button *ngIf="loginService.isLogged()" type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+                        <button *ngIf="loginService.isLogged()" type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetExperiencia()">ANULAR</button>
+                        <button *ngIf="loginService.isLogged()" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="agregarExperiencia()" [disabled]="experienciaForm.invalid">GUARDAR CAMBIOS</button>
                       </div>
                     </div>
                   </div>
@@ -202,14 +202,18 @@
                       </div>
                       <div class="col-md-9">
                         <div class="card-body">
-                          <h5 class="card-title">{{xp.cargo}}</h5>
-                          <p class="card-text">{{xp.descripcion}}</p>
-                          <h6 class="card-title">{{xp.empresa}}</h6>
-                          <p class="card-text"><small class="text-muted">{{xp.inicio}}</small></p>
+                          <h5 class="card-title">{{xp.empresa}}</h5>
+                          <p class="card-text">PUESTO: {{xp.cargo}}</p>
+                          <h6 class="card-title">{{xp.descripcion}}</h6>
+                          <p class="card-text"><small class="text-muted">{{xp.inicio | date:'y'}} - {{xp.finalDate | date:'y' | actualmenteExp}}</small></p>
 
                           <!-- BOTONES DE EDICION -->
 
-                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
+                          <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" 
+                            (click)="eliminarExperiencia(xp.id)">
+                            <i class="bi bi-folder-x"></i>
+                          </button>
+                          
                           <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
                           
                         </div>
@@ -244,8 +248,15 @@
                 
                 <!-- BOTONES DE EDICION -->
 
-                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-x"></i></button>
-                <button *ngIf="loginService.isLogged()"  type="button" class="btn btn-outline-light btn-sm agregar"><i class="bi bi-folder-minus"></i></button>
+                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar"
+                  (click)="eliminarSkill(sk.id)">
+                  <i class="bi bi-folder-x"></i>
+                </button>
+
+                <button *ngIf="loginService.isLogged()"  type="button" class="btn btn-outline-light btn-sm agregar"
+                  >
+                  <i class="bi bi-folder-minus"></i>
+                </button>
                 
                 <progress  class="progress" style="height: 30px;" value="{{sk.dominio}}" max="100" aria-valuenow="auto" aria-valuemin="0" aria-valuemax="100"></progress>
 
@@ -268,11 +279,11 @@
           
           <div class="modal-body">
            <!-- FORMULARIO -->
-           <form>
+           <form [formGroup]="skillForm" (ngSubmit)="agregarSkill()">
     
             <div class="mb-3">
               <label for="habilidad" class="form-label">SKILL</label>
-              <input type="text" class="form-control" id="habilidad">
+              <input formControlName="skill" type="text" class="form-control" id="habilidad">
               
             </div>
     
@@ -280,8 +291,8 @@
             <div class="mb-3">
               
               <label for="dominio" class="form-label">DOMINIO DEL SKILL</label>
-              <input type="range" class="form-range" min="0" max="100" step="25" id="dominio">
-              
+              <input  formControlName="dominio" type="range" class="form-range" min="0" max="100" step="10" id="dominio">
+              <p *ngIf="skillForm.value.dominio"> <small class="text-muted"> PORCENTAJE DEL DOMINIO: {{skillForm.value.dominio}}%</small></p>
             </div>
             
             
@@ -289,8 +300,8 @@
     
         </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ANULAR</button>
-            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">GUARDAR CAMBIOS</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetSkill()">ANULAR</button>
+            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="agregarSkill()" [disabled]="skillForm.invalid">GUARDAR CAMBIOS</button>
           </div>
         </div>
       </div>

@@ -9,6 +9,8 @@ import { ContactoComponent } from './componentes/contacto/contacto.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './servicios/auth-interceptor';
+import { CursandoPipe } from './servicios/cursando.pipe';
+import { ActualmenteExpPipe } from './servicios/actualmente-exp.pipe';
 
 
 
@@ -20,6 +22,8 @@ import { authInterceptorProviders } from './servicios/auth-interceptor';
     ProyectosComponent,
     ContactoComponent,
     InicioComponent,
+    CursandoPipe,
+    ActualmenteExpPipe,
     
     
   ],
@@ -32,7 +36,7 @@ import { authInterceptorProviders } from './servicios/auth-interceptor';
     
 
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders,CursandoPipe,ActualmenteExpPipe ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

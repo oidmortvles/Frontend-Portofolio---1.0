@@ -13,4 +13,15 @@ export class ExperienciaServiceService {
   public listarExperiencias(){
     return this.http.get(`${baseUrl}/experiencias`);
   }
+
+  //AGREGAR EXPERIENCIA
+  public agregarExperiencia(experiencia:any){
+    return this.http.post(`${baseUrl}/experiencia/new`,experiencia);
+
+  }
+
+  //ELIMINAR EXPERIENCIA
+  public eliminarExperiencia(experienciaId:any){
+    return this.http.delete(`${baseUrl}/experiencia/delete/${experienciaId}`);
+  }
 }

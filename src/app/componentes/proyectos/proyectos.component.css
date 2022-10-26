@@ -36,4 +36,80 @@ h5{
 .tabla{
     background: var(--color-box);
     margin-top: 8px;
+    
+}
+
+.agregar{
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: var(--color-terc);
+    border-radius: 50%;
+}
+
+
+button:hover{
+    color: var(--color-terc);
+    background-color:var(--color-sec);
+    border:none;
+}
+
+
+.btn{
+    background-color:var(--color-terc);
+    border: none;
+    color: var(--color-prim);
+}
+
+.modal{
+    background: var(--color-transp)
+}
+
+.modal-content{
+    background-color: var(--color-prim);
+}
+
+.modal-dialog{
+    margin-top: 20vh;
+}
+
+.modal-title{
+    color: var(--color-sec); 
+}
+
+.card{
+    color: var(--color-prim);
+}
+
+.edicion{
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: var(--color-prim);
+    border-radius: 50%;
+    margin-top: 2px;
+
+}
+
+.expandir{
+    color: var(--color-sec); 
+}
+
+.card{
+    margin-bottom: 1em;
+}
+
+.d-flex{
+    flex-wrap: wrap;
+}
+
+.footer{
+    text-align: start;
+    padding-left: 1em;
+    
+    color: var(--color-terc);
+}
+
+.texto-modal{
+    color: cadetblue;
 }

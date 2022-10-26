@@ -14,5 +14,14 @@ export class SkillServiceService {
     return this.http.get(`${baseUrl}/skills`);
   }
 
+  //AGREGAR SKILL
+  public agregarSkill(skill:any){
+    return this.http.post(`${baseUrl}/skill/new`,skill); 
+  }
+
+  //ELIMINAR SKILL
+  public eliminarSkill(skillId:any){
+    return this.http.delete(`${baseUrl}/skill/delete/${skillId}`);
+  }
  
 }

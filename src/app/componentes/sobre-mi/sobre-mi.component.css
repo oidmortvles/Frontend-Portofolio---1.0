@@ -130,3 +130,5 @@ progress[value]::-webkit-progress-bar {
   progress[value]::-webkit-progress-value {
     background-color: var(--color-sec);
   }
+
+
