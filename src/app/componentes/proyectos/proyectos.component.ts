@@ -10,10 +10,23 @@ import { ProyectoServiceService } from 'src/app/servicios/proyecto-service.servi
 })
 export class ProyectosComponent implements OnInit {
 
-  proyectoForm:FormGroup;
+  public proyectoForm:FormGroup;
   proyectos:any =[];
-  camposModal:any=[];
+  editar:boolean= false;
+  mostrar:boolean= false;
 
+  proyectoEdit:any={
+    id:"",
+    tipo:"",
+    descripcion:"",
+    multimedia:""};
+
+  proyecto:any={
+    id:"",
+    tipo:"",
+    descripcion:"",
+    multimedia:""};  
+  
 
   constructor(
     public loginService:LoginServiceService,
@@ -22,18 +35,14 @@ export class ProyectosComponent implements OnInit {
   ) {
 
     this.proyectoForm=this.formBuilder.group({
-      tipo: new FormControl ("",[Validators.required]),
+      id: new FormControl (""),
+      tipo: new FormControl ("",[Validators.required,]),
       descripcion: new FormControl ("",[Validators.required]),
       multimedia: new FormControl (""),
-      
-      
+      updateOn: 'change'
+   });
 
-    });
-
-
-
-
-   }
+}
 
   ngOnInit(): void {
 
@@ -46,14 +55,14 @@ export class ProyectosComponent implements OnInit {
 }
 
 //AGREGAR PROYECTO
-public agregarProyecto(){
-  this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
-    (data)=>{
-      console.log(this.proyectoForm.value);
-    } );
-
-    //despues de cargar los valores    
-  window.location.reload();
+public agregarProyecto(){  
+    this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
+      (data)=>{
+        console.log(this.proyectoForm.value);
+      } );
+      
+      //despues de cargar los valores    
+    window.location.reload();
 }
 
 //ELIMINAR PROYECTO
@@ -67,21 +76,51 @@ eliminarProyecto(proyectoId:any){
 
 
 
+//TRAER FORM CON INFO CARGADA
+public traerProyecto(id:any){
+//CARGAMOS EL MODAL CON LOS DATOS
+  this.editar=true;
+  this.proyectoEdit=id;
+  this.proyectoForm.patchValue({
+    id: this.proyectoEdit.id,
+    tipo: this.proyectoEdit.tipo,
+    descripcion: this.proyectoEdit.descripcion,
+    multimedia: this.proyectoEdit.multimedia});
+}
+ 
+
+
+
+//EDITAR EL PROYECTO
+public editarProyecto(value:any){
+  this.proyectoService.editarProyecto(value).subscribe(
+    (resp) => {
+      console.log(resp);
+    });  
+    this.proyectoForm.reset();
+    //despues de cargar los valores    
+    window.location.reload();
+}
 
 
 public resetProyecto(){
   this.proyectoForm.reset()
 }
 
-//CAPTURAR EVENTO MODAL
-mostrarModal(eventoObjeto: any){
- 
- this.camposModal=eventoObjeto;
- 
-  
+  public mostrarModal(form:any){
+    this.proyecto=form;
+    this.proyectoForm.patchValue({
+      id: form.id,
+      tipo: form.tipo,
+      descripcion: form.descripcion,
+      multimedia: form.multimedia});
+      
 
 }
 
 
 
+
+
 }
+//COMIENZAN

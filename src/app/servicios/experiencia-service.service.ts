@@ -24,4 +24,9 @@ export class ExperienciaServiceService {
   public eliminarExperiencia(experienciaId:any){
     return this.http.delete(`${baseUrl}/experiencia/delete/${experienciaId}`);
   }
+
+  //EDITAR EXPERIENCIA
+  public editarExp(exp:any){
+    return this.http.put(`${baseUrl}/experiencia/edit`,exp);
+  }
 }

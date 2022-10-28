@@ -24,4 +24,14 @@ export class ProyectoServiceService {
     return this.http.delete(`${baseUrl}/proyecto/delete/${proyectoId}`);
   }
 
+  //TRAER UN PROYECTO
+  public traerSingleProyect(proyectId:any){
+    return this.http.get(`${baseUrl}/proyecto/${proyectId}`);
+  }
+
+  //EDITAR PROYECTO
+  public editarProyecto(proyecto:any){
+    return this.http.put(`${baseUrl}/proyecto/edit/`,proyecto);
+  }
+
 }

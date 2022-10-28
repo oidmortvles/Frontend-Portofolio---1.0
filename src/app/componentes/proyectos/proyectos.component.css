@@ -81,6 +81,11 @@ button:hover{
     color: var(--color-prim);
 }
 
+.card-body{
+    color: var(--color-prim);
+    padding: 8px;
+}
+
 .edicion{
     text-align: center;
     margin-left: 10px;
@@ -92,7 +97,9 @@ button:hover{
 }
 
 .expandir{
-    color: var(--color-sec); 
+    color: var(--color-terc);
+    background-color:var( --color-prim) ;
+    margin-bottom: 1em; 
 }
 
 .card{
@@ -110,6 +117,6 @@ button:hover{
     color: var(--color-terc);
 }
 
-.texto-modal{
-    color: cadetblue;
+.texto{
+    color: var(--color-terc);
 }

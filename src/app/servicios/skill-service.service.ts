@@ -23,5 +23,15 @@ export class SkillServiceService {
   public eliminarSkill(skillId:any){
     return this.http.delete(`${baseUrl}/skill/delete/${skillId}`);
   }
+
+  //TRAER UN INSTITUTO
+  public traerSkill(skillId:any){
+    return this.http.get(`${baseUrl}/skill/${skillId}`);
+  }
+
+  //EDITAR INSTITUTO
+  public editarSkill(skill:any){
+    return this.http.put(`${baseUrl}/skill/edit`,skill);
+  }
  
 }

@@ -24,4 +24,15 @@ export class EducacionServiceService {
     public eliminarEducacion(educacionId:any){
       return this.http.delete(`${baseUrl}/educacion/delete/${educacionId}`);
     }
+
+
+    //TRAER UN INSTITUTO
+    public traerInstituto(institutoId:any){
+      return this.http.get(`${baseUrl}/instituto/${institutoId}`);
+    }
+
+    //EDITAR INSTITUTO
+    public editarEducacion(instituto:any){
+      return this.http.put(`${baseUrl}/instituto/edit`,instituto);
+    }
 }

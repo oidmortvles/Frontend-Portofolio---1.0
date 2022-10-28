@@ -16,15 +16,43 @@ import { ActualmenteExpPipe } from 'src/app/servicios/actualmente-exp.pipe';
 })
 export class SobreMiComponent implements OnInit {
 
-  
+  public educacionForm:FormGroup;
+  public experienciaForm: FormGroup;
+  public skillForm : FormGroup;
 
+  //EDUCACION
   instituciones:any =[];
-  experiencias:any = [];
-  skills:any = [];
+  instituto: any={
+    id:"",
+    titulo:"",
+    institucion:"",
+    actual:"",
+    inicio:""};
 
-  educacionForm:FormGroup;
-  experienciaForm: FormGroup;
-  skillForm : FormGroup;
+  //EXPERIENCIA
+  experiencias:any = [];
+  experiencia:any={
+      id:"",
+      empresa: "",
+      cargo: "",
+      inicio: "",
+      actual: "",
+      finalDate: "",
+      descripcion: ""};
+
+  //SKILLS
+  skills:any = [];
+  skill: any={
+    id:"",
+    skill:"",
+    dominio:""};
+
+  editar:boolean= false;
+  mostrar:boolean= false;
+
+
+
+  
   
 
   constructor(private educacionService: EducacionServiceService, 
@@ -38,6 +66,7 @@ export class SobreMiComponent implements OnInit {
     
     //EDUCACION
     this.educacionForm=this.formBuilder.group({
+      id:new FormControl (""),
       titulo: new FormControl ("",[Validators.required]),
       institucion: new FormControl (""),
       actual: new FormControl (""),
@@ -48,6 +77,7 @@ export class SobreMiComponent implements OnInit {
 
     //EXPERIENCIA
     this.experienciaForm=this.formBuilder.group({
+      id:new FormControl (""),
       empresa: new FormControl ("",[Validators.required]),
       cargo: new FormControl ("",[Validators.required]),
       inicio: new FormControl ("",[Validators.required]),
@@ -59,9 +89,10 @@ export class SobreMiComponent implements OnInit {
 
     //SKILLS
     this.skillForm=this.formBuilder.group({
+      id:new FormControl (""),
       skill: new FormControl ("",[Validators.required]),
       dominio: new FormControl ("",[Validators.required])
-    })
+    });
 
 
 
@@ -98,8 +129,7 @@ export class SobreMiComponent implements OnInit {
   }
 
   //EDUCACION METODOS
-  agregarEducacion(){
-    
+public agregarEducacion(){    
     this.educacionService.agregarInstitucion(this.educacionForm.value).subscribe(
       (data)=>{
         console.log(this.educacionForm.value);
@@ -109,13 +139,37 @@ export class SobreMiComponent implements OnInit {
     window.location.reload();
     }
 
-    eliminarEducacion(educacionId:any){
+public eliminarEducacion(educacionId:any){
       this.educacionService.eliminarEducacion(educacionId).subscribe(
         (data)=>{
           this.instituciones = this.instituciones.filter((institucion:any)=>institucion.educacionId !=educacionId );
         });
       window.location.reload();
     }
+
+public traerEducacion(id:any){
+      
+        //CARGAMOS EL MODAL CON LOS DATOS
+        this.editar=true;
+        this.instituto=id;
+        this.educacionForm.patchValue({
+          id:this.instituto.id,
+          titulo:this.instituto.titulo,
+          institucion:this.instituto.institucion,
+          actual:this.instituto.actual,
+          inicio:this.instituto.inicio});
+        }
+
+
+public editarInstituto(value:any){
+          this.educacionService.editarEducacion(value).subscribe(
+            (resp) => {
+              console.log(resp);
+            });
+            this.educacionForm.reset();
+            //despues de cargar los valores    
+            window.location.reload();
+        }
 
   //METODO FORMULARIO EDUCACION
   public resetEducacion(){
@@ -124,7 +178,7 @@ export class SobreMiComponent implements OnInit {
 
 
   //EXPERIENCIA METODOS
-  agregarExperiencia(){
+public agregarExperiencia(){
     this.experienciaService.agregarExperiencia(this.experienciaForm.value).subscribe(
       (data)=>{
         console.log(this.experienciaForm.value);
@@ -134,7 +188,7 @@ export class SobreMiComponent implements OnInit {
       window.location.reload();
     }
 
-    eliminarExperiencia(experienciaId:any){
+public eliminarExperiencia(experienciaId:any){
       this.experienciaService.eliminarExperiencia(experienciaId).subscribe(
         (data)=>{
           this.experiencias = this.experiencias.filter((exper:any)=>exper.experienciaId !=experienciaId );
@@ -144,6 +198,29 @@ export class SobreMiComponent implements OnInit {
       window.location.reload();
     }
 
+public traerExperiencia(id:any){
+  //CARGAMOS EL MODAL CON LOS DATOS
+  this.editar=true;
+  this.experiencia=id;
+  this.experienciaForm.patchValue({
+    id:this.experiencia.id,
+      empresa: this.experiencia.empresa,
+      cargo: this.experiencia.cargo,
+      inicio: this.experiencia.inicio,
+      actual: this.experiencia.actual,
+      finalDate: this.experiencia.finalDate,
+      descripcion: this.experiencia.descripcion});
+  }    
+
+  public editarExp(value:any){
+    this.experienciaService.editarExp(value).subscribe(
+      (resp) => {
+        console.log(resp);
+      });
+      this.experienciaForm.reset();
+      //despues de cargar los valores    
+      window.location.reload();
+  }  
 
   //METODO FORMULARIO EXPERIENCIA
   public resetExperiencia(){
@@ -151,7 +228,7 @@ export class SobreMiComponent implements OnInit {
   }
  
   //SKILL METODOS
-  agregarSkill(){
+public agregarSkill(){
     this.skillService.agregarSkill(this.skillForm.value).subscribe(
       (data)=>{
         console.log(this.skillForm.value);
@@ -161,7 +238,7 @@ export class SobreMiComponent implements OnInit {
       window.location.reload();
   }
 
-  eliminarSkill(skillId:any){
+public eliminarSkill(skillId:any){
     this.skillService.eliminarSkill(skillId).subscribe(
       (data)=>{
         this.skills = this.skills.filter((skill:any)=>skill.skillId !=skillId );
@@ -169,8 +246,29 @@ export class SobreMiComponent implements OnInit {
 
       //despues de cargar los valores
       window.location.reload();
+    }
 
-  }
+public traerSkill(id:any){
+    //CARGAMOS EL MODAL CON LOS DATOS
+    this.editar=true;
+    this.skill=id;
+    this.skillForm.patchValue({
+    id: this.skill.id,
+    skill: this.skill.skill,
+    dominio: this.skill.dominio});
+    
+}
+
+public editarSkill(value:any){
+  this.skillService.editarSkill(value).subscribe(
+    (resp) => {
+      console.log(resp);
+    });  
+    this.skillForm.reset();
+    //despues de cargar los valores    
+    window.location.reload();
+
+}
 
   //METODO FORMULARIO SKILL
   public resetSkill(){
