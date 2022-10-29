@@ -1,4 +1,4 @@
-<div class="contendor">
+<div class="contendor" *ngFor="let u of user">
     
 
     <div class="container--fluid">
@@ -6,7 +6,7 @@
       <div class="row">
               <aside class="col-12 col-lg-6 texto">
 
-                  <h2 class="fs-2">Hola, mi nombre es Daniel Pereyra</h2>
+                  <h2 class="fs-2">Hola, mi nombre es {{u.nombre}}</h2>
 
                   <h3 class="fs-2"><span>SOY #</span> <span class="typing">JOJO</span> </h3>
 

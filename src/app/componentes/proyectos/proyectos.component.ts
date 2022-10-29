@@ -31,7 +31,7 @@ export class ProyectosComponent implements OnInit {
   constructor(
     public loginService:LoginServiceService,
     private formBuilder: FormBuilder,
-    private proyectoService : ProyectoServiceService,
+    public proyectoService : ProyectoServiceService,
   ) {
 
     this.proyectoForm=this.formBuilder.group({

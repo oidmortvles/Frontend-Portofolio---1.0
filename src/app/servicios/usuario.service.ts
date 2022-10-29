@@ -8,18 +8,17 @@ import baseUrl from './base';
 })
 export class UsuarioService {
 
-  constructor(private httpClient:HttpClient ) { }
+  constructor(private http:HttpClient ) { }
 
-  //USUARIO
-  public traerUsuario(){
-    return this.httpClient.get(`${baseUrl}/usuario`);
-  }
+//TRAER USUARIO
+public usuarios(){
+  return this.http.get(`${baseUrl}/usuarios`);
+} 
 
-  public editarUsuario(user : any){
-    return this.httpClient.put(`${baseUrl}/usuario/edit`,user);
-  }
-
-
+//EDITAR USUARIO
+public editarUsuario(usuario:any){
+  return this.http.put(`${baseUrl}/usuario/edit/`,usuario);
+}
 
 
 

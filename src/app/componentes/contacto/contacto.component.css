@@ -49,5 +49,77 @@ h5{
 
 a:hover{
     color:var(--color-sec);
-   
 }
+
+
+
+h4{
+    color: var(--color-sec);
+    
+}
+
+.letra{
+    color:var( --color-terc)
+}
+
+.fs-5{
+    float: left;
+    padding-right: 1rem;
+}
+
+.agregar{
+    text-align: center;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    color: var(--color-terc);
+    border-radius: 50%;
+}
+
+button:hover{
+    color: var(--color-terc);
+    background-color:var(--color-sec);
+    border:none;
+}
+
+
+.btn{
+    background-color:var(--color-terc);
+    border: none;
+    color: var(--color-prim);
+
+}
+
+.datos{
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.modal{
+    background: var(--color-transp)
+}
+
+.modal-content{
+    background-color: var(--color-prim);
+}
+
+.modal-dialog{
+    margin-top: 20vh;
+}
+
+.modal-title{
+    color: var(--color-sec); 
+}
+
+.form-label{
+    color: var(--color-terc);
+}
+
+.date{
+    padding:0;
+    margin-bottom: 1em;
+}
+
+.form-label{
+    color: var(--color-sec);
+}
+
