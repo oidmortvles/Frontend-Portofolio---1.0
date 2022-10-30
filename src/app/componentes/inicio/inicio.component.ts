@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginServiceService } from 'src/app/servicios/login-service.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
@@ -11,10 +12,9 @@ export class InicioComponent implements OnInit {
   user:any =[];
 
   constructor(
-    public usuarioService:UsuarioService
-    ){ 
-
-  }
+    public usuarioService:UsuarioService,
+    public loginService : LoginServiceService
+    ){ }
 
   ngOnInit(): void {
     //TRAER DATOS USUARIO
@@ -22,8 +22,12 @@ export class InicioComponent implements OnInit {
       (data)=>{
       this.user=data;});
 
- }
+      
+}
 
 
+
+  
 
 }
+

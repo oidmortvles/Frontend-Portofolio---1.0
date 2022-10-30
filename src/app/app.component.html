@@ -63,7 +63,7 @@
         
         
         <nav class="caja-menu">
-            <h1 class="fs-1">DANIEL PEREYRA</h1>
+            <h1  *ngFor="let u of user" class="fs-1">{{u.nombre}}</h1>
             <a class="nav-link active fs-3" routerLink="inicio" routerLinkActive="activo">INICIO</a>
             <a class="nav-link fs-3" routerLink="sobre-mi" routerLinkActive="activo">SOBRE MI</a>
             <a class="nav-link fs-3" routerLink="proyectos" routerLinkActive="activo">PROYECTOS</a>

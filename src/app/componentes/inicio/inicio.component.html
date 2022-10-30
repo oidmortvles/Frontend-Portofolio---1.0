@@ -1,29 +1,36 @@
-<div class="contendor" *ngFor="let u of user">
+<div class="contendor">
     
 
     <div class="container--fluid">
 
-      <div class="row">
-              <aside class="col-12 col-lg-6 texto">
+      <div class="row" >
+              <aside class="col-12 col-lg-6 texto" *ngFor="let u of user">
 
-                  <h2 class="fs-2">Hola, mi nombre es {{u.nombre}}</h2>
+                  <h2 class="fs-2">Hola, mi nombre es <span class="coloreado">{{u.nombre}}</span></h2>
 
-                  <h3 class="fs-2"><span>SOY #</span> <span class="typing">JOJO</span> </h3>
+                  <h3 class="fs-2 coloreado">SOY # <span class="tipeo">{{u.otro}}</span></h3>
+                  
 
-                  <p class="lh-base">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe facere enim dolorem excepturi dolore? Deleniti et non doloribus hic provident quam recusandae omnis dolorem soluta? Atque molestiae perspiciatis quas, odit ex impedit laborum quidem odio adipisci, commodi corrupti dolore alias possimus ad reprehenderit totam, ab molestias et. Eveniet ullam possimus dicta. Voluptatibus voluptates temporibus ea nemo modi quaerat qui quis?</p>
-                
+                  <p class="lh-base">{{u.descripcion}}</p>
+
+                  
+                  
+
                 </aside>
 
-          
+                
 
               <aside class="col-12 col-lg-6 perfil">
 
-                <img src="../../../assets/perfil.jpg"  class="img-fluid foto"  alt="perfil">
+                <img src="../../../assets/perfil2.jpg"  class="img-fluid foto"  alt="perfil">
+                
 
               </aside>
+              <p *ngIf="loginService.isLogged()" class="fs-6 aviso" >*ESTA SECCIÓN ES EDITABLE DESDE EL FORMULARIO DE CONTACTO</p>
+              
         </div>
 
-   
+        
             
 
     </div>

@@ -19,7 +19,7 @@
 }
 
 
-span{
+.coloreado{
     color:var(--color-sec);
 }
 
@@ -44,6 +44,7 @@ span{
 .texto{
     padding: 30px;
     
+    
 }
 
 .perfil{
@@ -52,6 +53,7 @@ span{
     justify-content:center;
     align-items: center;
     padding: 30px;
+    
 }
 
 .foto{
@@ -59,4 +61,29 @@ span{
     border-radius: 50%;
 }
 
+.aviso{
+    color:var(--color-sec);
+    padding-left: 30px;
+    
+}
 
+.tipeo{
+    color:var(--color-sec);
+    display: block;    
+    border-right: 5px solid var(--color-terc);
+    width: 100%;
+    height:2.3em ;
+    overflow:hidden;
+    animation: tipex 3s infinite alternate-reverse,
+    blink  3s infinite alternate-reverse
+    
+    
+
+}
+
+@keyframes tipex{
+    from{width: 0;}  
+}
+@keyframes blink {
+    0%{border-color: transparent;}
+}

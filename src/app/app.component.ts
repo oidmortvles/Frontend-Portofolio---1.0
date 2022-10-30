@@ -3,6 +3,7 @@ import { Component} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import baseUrl from './servicios/base';
 import { LoginServiceService } from './servicios/login-service.service';
+import { UsuarioService } from './servicios/usuario.service';
 
 
 
@@ -14,8 +15,12 @@ import { LoginServiceService } from './servicios/login-service.service';
 export class AppComponent{  
   
   formLogin:FormGroup;
+  user:any =[];
 
-  constructor(private formBuilder: FormBuilder,public loginService:LoginServiceService) {
+  constructor(private formBuilder: FormBuilder,
+              public loginService:LoginServiceService,
+              public usuarioService:UsuarioService) {
+
     this.formLogin= this.formBuilder.group({
       username: new FormControl ("",[Validators.required,Validators.minLength(5)]),
       password : new FormControl ("", [Validators.required,Validators.minLength(3),Validators.maxLength(15)])
@@ -24,6 +29,10 @@ export class AppComponent{
     }
 
   ngOnInit(): void {
+    //TRAER DATOS USUARIO
+    this.usuarioService.usuarios().subscribe(
+      (data)=>{
+      this.user=data;});
   }
 
   loginData= {
@@ -40,9 +49,9 @@ export class AppComponent{
         this.formLogin.value.password == this.loginData.password ){
 
           this.loginService.generarToken(this.loginData).subscribe(
-            (data:any)=>{console.log(data)
+            (data:any)=>{
             this.loginService.sesion(data.accessToken)
-          console.log(data.accessToken)},
+          },
            
             (error)=> console.log(error)
 
@@ -50,8 +59,7 @@ export class AppComponent{
           
         else{
             this.formLogin.reset(),
-            console.log("Credenciales no validas"),
-            console.log(this.formLogin.value);
+            console.log("Credenciales no validas");
           }
       }
 
