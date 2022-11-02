@@ -1,3 +1,4 @@
-let baseUrl = 'http://localhost:8070'
+let baseUrl = 'https://backend-portfolio-arg.herokuapp.com/'
+
 
 export default baseUrl;

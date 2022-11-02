@@ -37,7 +37,7 @@
                           </div>
                           
                           <div class="footer">
-                            <p class="text-start"><small class="text-muted">DESCRIPCIÓN DEL PROYECTO: {{proyecto.descripcion}}</small></p>
+                            <p class="text-start"><span class="coloreado">DESCRIPCIÓN DEL PROYECTO: </span>{{proyecto.descripcion}}</p>
                          </div>
                          
                         </div>
@@ -107,8 +107,7 @@
           <div class="mb-3">
             
             <label for="dominio" class="form-label"></label>
-            <!-- <input type="file" formControlName="multimedia"> -->
-            <textarea formControlName="multimedia" class="form-control" aria-label="With textarea"></textarea>
+            <input type="file" accept=".png, .jpg" formControlName="multimedia">
             <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
           </div>
           

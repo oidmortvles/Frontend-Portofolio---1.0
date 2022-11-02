@@ -120,3 +120,7 @@ button:hover{
 .texto{
     color: var(--color-terc);
 }
+
+.coloreado{
+    color: var(--color-sec);
+}
