@@ -10,8 +10,10 @@
 
 body{
     background-color: #171614;
-    background-image: url(../src/assets/arg-prog-logo.png);
+    background-image: url(../src/assets/fondo4.jpg);
+    height: 100vh;
     background-repeat:no-repeat;
+    background-size:cover;
     
 
 }
