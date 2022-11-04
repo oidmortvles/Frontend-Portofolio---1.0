@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SobreMiComponent } from './componentes/sobre-mi/sobre-mi.component';
@@ -11,6 +11,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './servicios/auth-interceptor';
 import { CursandoPipe } from './servicios/cursando.pipe';
 import { ActualmenteExpPipe } from './servicios/actualmente-exp.pipe';
+
+
 
 
 
@@ -32,7 +34,7 @@ import { ActualmenteExpPipe } from './servicios/actualmente-exp.pipe';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-  
+   
     
 
   ],

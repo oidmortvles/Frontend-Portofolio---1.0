@@ -107,7 +107,7 @@
           <div class="mb-3">
             
             <label for="dominio" class="form-label"></label>
-            <input type="file" accept=".png, .jpg" formControlName="multimedia">
+            <input type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)">
             <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
           </div>
           

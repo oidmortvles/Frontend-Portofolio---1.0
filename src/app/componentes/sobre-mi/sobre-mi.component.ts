@@ -136,7 +136,7 @@ public agregarEducacion(){
       } );
 
       //despues de cargar los valores    
-    window.location.reload();
+    
     }
 
 public eliminarEducacion(educacionId:any){
@@ -144,7 +144,7 @@ public eliminarEducacion(educacionId:any){
         (data)=>{
           this.instituciones = this.instituciones.filter((institucion:any)=>institucion.educacionId !=educacionId );
         });
-      window.location.reload();
+      
     }
 
 public traerEducacion(id:any){
@@ -168,7 +168,7 @@ public editarInstituto(value:any){
             });
             this.educacionForm.reset();
             //despues de cargar los valores    
-            window.location.reload();
+            
         }
 
   //METODO FORMULARIO EDUCACION
@@ -185,7 +185,7 @@ public agregarExperiencia(){
       });
 
       //despues de cargar los valores
-      window.location.reload();
+      //window.location.reload();
     }
 
 public eliminarExperiencia(experienciaId:any){
@@ -195,7 +195,7 @@ public eliminarExperiencia(experienciaId:any){
         });
 
        //despues de cargar los valores 
-      window.location.reload();
+      
     }
 
 public traerExperiencia(id:any){
@@ -219,7 +219,7 @@ public traerExperiencia(id:any){
       });
       this.experienciaForm.reset();
       //despues de cargar los valores    
-      window.location.reload();
+      
   }  
 
   //METODO FORMULARIO EXPERIENCIA
@@ -235,7 +235,7 @@ public agregarSkill(){
       });
 
       //despues de cargar los valores
-      window.location.reload();
+      
   }
 
 public eliminarSkill(skillId:any){
@@ -245,7 +245,7 @@ public eliminarSkill(skillId:any){
       });
 
       //despues de cargar los valores
-      window.location.reload();
+      
     }
 
 public traerSkill(id:any){
@@ -266,7 +266,7 @@ public editarSkill(value:any){
     });  
     this.skillForm.reset();
     //despues de cargar los valores    
-    window.location.reload();
+    
 
 }
 

@@ -114,10 +114,12 @@ public resetProyecto(){
       tipo: form.tipo,
       descripcion: form.descripcion,
       multimedia: form.multimedia});
-      
-
 }
 
+
+alCargar(e:any){
+  console.log(e.target.files[0]);
+}
 
 
 

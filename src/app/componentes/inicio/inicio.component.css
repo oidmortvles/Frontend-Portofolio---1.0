@@ -76,9 +76,6 @@
     overflow:hidden;
     animation: tipex 3s infinite alternate-reverse,
     blink  3s infinite alternate-reverse
-    
-    
-
 }
 
 @keyframes tipex{
