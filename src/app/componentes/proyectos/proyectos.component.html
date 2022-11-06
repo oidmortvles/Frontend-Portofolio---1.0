@@ -12,37 +12,17 @@
                 <h5></h5>
 
 
-                  <div class="d-flex justify-content-between">
+                  <div class="d-flex justify-content-between" *ngFor="let pr of proyectos">
                     <!-- TARJETAS -->
-                <div *ngFor="let pr of proyectos" class="card" style="width: 18rem;">
-                  <img src="../../../assets/perfil.jpg" class="card-img-top" alt="Imagen del proyecto">
+                <div class="card animate__animated animate__fadeInDown" style="width: 18rem;">
+                  <img [src]="" class="card-img-top" alt="Imagen del proyecto">
                   <div class="card-body">
 
                     <!-- BOTON QUE ABRE MODAL -->
-                    <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)" >+ INFO</button>
+                    <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)" (click)="traerImg(pr)">+ INFO</button>
                     <br>
 
-                    <!-- MODAL -->
-                    <div class="modal fade" id="proyectoModal" tabindex="-1" aria-labelledby="proyectoModal" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">TIPO DE PROYECTO: <span class="texto">{{proyecto.tipo}}</span></h1>
-                          </div>
-
-                          <div class="modal-body">
-                            <p class="texto">{{proyecto.multimedia}}</p> 
-                            <br>
-                          </div>
-                          
-                          <div class="footer">
-                            <p class="text-start"><span class="coloreado">DESCRIPCIÓN DEL PROYECTO: </span>{{proyecto.descripcion}}</p>
-                         </div>
-                         
-                        </div>
-                      </div>
-                    </div>
+                    
 
 
                     <!-- BOTONES DE EDICION -->
@@ -92,7 +72,7 @@
           
           <div class="mb-3">
             <label for="habilidad" class="form-label">TIPO DE PROYECTO</label>
-            <input formControlName="tipo" type="text" class="form-control" id="tipo" placeholder="CLASIFICACIÓN DEL PROYECTO">
+            <input formControlName="tipo" type="text" class="form-control" id="habilidad" placeholder="CLASIFICACIÓN DEL PROYECTO">
             
           </div>
           
@@ -106,9 +86,12 @@
 
           <div class="mb-3">
             
-            <label for="dominio" class="form-label"></label>
-            <input type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)">
+            <label *ngIf="!editar" for="dominio" class="form-label">SELECCION EL PROYECTO A MOSTRAR</label>
+            <input *ngIf="!editar" class="form-control" type="text"  id="dominio" type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)" >
+            
             <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
+                        
+            
           </div>
           
           
@@ -119,12 +102,34 @@
       </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProyecto()">ANULAR</button>
-          <button *ngIf="!editar" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="agregarProyecto()">GUARDAR CAMBIOS</button>
+          <button *ngIf="!editar" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="agregarProyecto()" >GUARDAR CAMBIOS</button>
           <button *ngIf="editar"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="editarProyecto(proyectoForm.value)">ACTUALIZAR</button>
+          
         </div>
       </div>
     </div>
   </div>
+    <!-- MODAL -->
+    <div class="modal fade" id="proyectoModal" tabindex="-1" aria-labelledby="proyectoModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">TIPO DE PROYECTO: <span class="texto">{{proyecto.tipo}}</span></h1>
+          </div>
+
+          <div class="modal-body">
+            <img [src]="img" class="img-fluid" id="myimg" [alt]=""> 
+            <br>
+          </div>
+          
+          <div class="footer">
+            <p ><span class="coloreado">DESCRIPCIÓN DEL PROYECTO: </span>{{proyecto.descripcion}}</p>
+         </div>
+         
+        </div>
+      </div>
+    </div>
     
 
 

@@ -4,7 +4,7 @@
     <div class="container text-start">
         
         <div class="row align-items-center">
-            <div class="col-12 tablas" >
+            <div class="col-12 tablas animate__animated animate__fadeInDown" >
                 <span class="fs-2">DATOS</span>
                 <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#contacto" 
                        (click)="traerDatos(u)">
@@ -34,7 +34,7 @@
                         <span class="fs-2">REDES</span>
                         <br>
                         
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center animate__animated animate__fadeInDown">
                             <a class="nav-link fs-3" href={{u.linkedin}} target=”_blank”><i class="bi-linkedin redes fs-2"></i></a>
                             <a class="nav-link fs-3" href={{u.instagram}} target=”_blank”><i class="bi-instagram redes fs-2"></i></a>
                             <a class="nav-link fs-3" href={{u.github}} target=”_blank”><i class="bi-github redes fs-2"></i></a>

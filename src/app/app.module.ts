@@ -11,6 +11,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './servicios/auth-interceptor';
 import { CursandoPipe } from './servicios/cursando.pipe';
 import { ActualmenteExpPipe } from './servicios/actualmente-exp.pipe';
+import { environment } from '../environments/environment';
+import { AngularFireStorageModule  } from '@angular/fire/compat/storage';
+import { AngularFireModule } from '@angular/fire/compat';
+
+
+
+
+
+
 
 
 
@@ -34,11 +43,18 @@ import { ActualmenteExpPipe } from './servicios/actualmente-exp.pipe';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule,
+    
+    
+    
+
+    
    
     
 
   ],
-  providers: [authInterceptorProviders,CursandoPipe,ActualmenteExpPipe ],
+  providers: [authInterceptorProviders,CursandoPipe,ActualmenteExpPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

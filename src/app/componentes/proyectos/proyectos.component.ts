@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {LoginServiceService} from 'src/app/servicios/login-service.service';
 import { ProyectoServiceService } from 'src/app/servicios/proyecto-service.service';
+import { AngularFireStorage } from  '@angular/fire/compat/storage';
+import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proyectos',
@@ -25,13 +28,27 @@ export class ProyectosComponent implements OnInit {
     id:"",
     tipo:"",
     descripcion:"",
-    multimedia:""};  
+    multimedia:""};
+
+    imagenes:string[]=[];
+    img:string="";
+
+    fotos:any={
+      id:"",
+      tipo:"",
+      descripcion:"",
+      multimedia:""};
+    
+  
   
 
   constructor(
     public loginService:LoginServiceService,
     private formBuilder: FormBuilder,
     public proyectoService : ProyectoServiceService,
+    private storage:AngularFireStorage,
+    private router : Router
+
   ) {
 
     this.proyectoForm=this.formBuilder.group({
@@ -49,20 +66,18 @@ export class ProyectosComponent implements OnInit {
   //LISTAR PROYECTOS
   this.proyectoService.listarProyectos().subscribe(
     (data:any)=>{
-      this.proyectos= data;
-      
-    });
+      this.proyectos= data;});
+
+    this.obtenerImg();
 }
 
 //AGREGAR PROYECTO
-public agregarProyecto(){  
-    this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
+public agregarProyecto(){ 
+  
+       this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
       (data)=>{
-        console.log(this.proyectoForm.value);
-      } );
-      
-      //despues de cargar los valores    
-    window.location.reload();
+        console.log(this.proyectoForm.value);});
+        this.proyectoForm.reset()
 }
 
 //ELIMINAR PROYECTO
@@ -71,7 +86,7 @@ eliminarProyecto(proyectoId:any){
     (data)=>{
       this.proyectos = this.proyectos.filter((proyecto:any)=>proyecto.proyectoId !=proyectoId );
     });
-  window.location.reload();
+  //window.location.reload();
 }
 
 
@@ -99,7 +114,7 @@ public editarProyecto(value:any){
     });  
     this.proyectoForm.reset();
     //despues de cargar los valores    
-    window.location.reload();
+    //window.location.reload();
 }
 
 
@@ -113,12 +128,44 @@ public resetProyecto(){
       id: form.id,
       tipo: form.tipo,
       descripcion: form.descripcion,
-      multimedia: form.multimedia});
+    multimedia:form.multimedia});
+      console.log(this.proyectoForm.value);
+      this.proyectoForm.reset()
 }
 
 
 alCargar(e:any){
-  console.log(e.target.files[0]);
+  let id=e.target.files[0].name
+  const file= e.target.files[0];
+  const filePath= id;
+  const ref= this.storage.ref(filePath);
+  const upload= this.storage.upload(filePath,file);
+  
+}
+
+obtenerImg(){
+  const almacenamiento=getStorage();
+  const imgRef= ref(almacenamiento);
+  
+  listAll(imgRef).then(async (res) => {
+    this.imagenes=[];
+    for(let img of res.items ){
+      const url= await getDownloadURL(img);
+      this.imagenes.push(url);
+      console.log(url);}
+      
+    });}
+
+
+traerImg(a:any){
+  const storage = getStorage();
+  const b= a.multimedia.replace("C:\\fakepath\\", "");
+  getDownloadURL(ref(storage, b))
+  .then((url) => {
+    this.img=""
+    this.img= url;
+  })
+  
 }
 
 

@@ -1,10 +1,12 @@
-
+/* IMPORTO LIBRERIA DE CSS */
+@import '~animate.css/animate.min';
 :root{
     --color-prim:#1a1919;
     --color-sec:#FB5012;
     --color-terc:#FFFFFA;
     --color-transp:rgba(43, 43, 43, 0.2);
     --color-box:rgba(43, 43, 43, 0.4);
+    --animate-delay: 1s;
 }
 
 

@@ -6,12 +6,13 @@
       <div class="row" >
               <aside class="col-12 col-lg-6 texto" *ngFor="let u of user">
 
-                  <h2 class="fs-2">Hola, mi nombre es <span class="coloreado">{{u.nombre}}</span></h2>
+                  <h2 class="fs-2 animate__animated animate__fadeInDown">Hola, mi nombre es <span class="coloreado">{{u.nombre}}</span></h2>
 
-                  <h3 class="fs-2 coloreado"><span class="tipeo">{{u.otro}}</span></h3>
+                  <h3 class="fs-2 coloreado animate__animated animate__fadeInDown" style="margin-top: 1em;"><span class="tipeo">{{u.otro}}</span></h3>
                   
 
-                  <p class="lh-base" style="margin-top: 1em;">{{u.descripcion}}</p>
+                  <p class="lh-base animate__animated animate__fadeInDown" style="margin-top: 2em;">{{u.descripcion}}</p>
+                  
 
                   
                   
@@ -22,11 +23,11 @@
 
               <aside class="col-12 col-lg-6 perfil">
 
-                <img src="../../../assets/perfil.jpg"  class="img-fluid foto"  alt="perfil">
+                <img src="../../../assets/perfil.jpg"  class="img-fluid foto animate__animated animate__fadeIn animate__delay-1s"  alt="perfil">
                 
 
               </aside>
-              <p *ngIf="loginService.isLogged()" class="fs-6 aviso" >*ESTA SECCIÓN ES EDITABLE DESDE EL FORMULARIO DE CONTACTO</p>
+              <p *ngIf="loginService.isLogged()" class="fs-6 aviso animate__animated animate__flash" >*ESTA SECCIÓN ES EDITABLE DESDE EL FORMULARIO DE CONTACTO</p>
               
         </div>
 

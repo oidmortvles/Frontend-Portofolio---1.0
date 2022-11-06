@@ -105,7 +105,7 @@ public editarUsuario(value:any){
     });  
     this.contactoForm.reset();
     //despues de cargar los valores    
-    window.location.reload();
+    //window.location.reload();
 
 }
 
