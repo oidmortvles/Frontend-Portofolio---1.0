@@ -1,139 +1,147 @@
 <div class="contendor">
-    <h3 class="fs-1 titulo">PROYECTOS</h3>
+  <h3 class="fs-1 titulo">PROYECTOS</h3>
 
-    <div class="container text-start">
-        
-        <div class="row align-items-center">
-            <div class="col-12 tablas">
-                <span class="fs-2">PORTFOLIO</span>
-                <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#proyecto" (click)="editar=false"><i class="bi bi-folder-plus"></i></button>
-                
-                
-                <h5></h5>
-
-
-                  <div class="d-flex justify-content-between" *ngFor="let pr of proyectos">
-                    <!-- TARJETAS -->
-                <div class="card animate__animated animate__fadeInDown" style="width: 18rem;">
-                  <img [src]="" class="card-img-top" alt="Imagen del proyecto">
-                  <div class="card-body">
-
-                    <!-- BOTON QUE ABRE MODAL -->
-                    <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)" (click)="traerImg(pr)">+ INFO</button>
-                    <br>
-
-                    
+  <div class="container text-start">
+      
+      <div class="row align-items-center">
+          <div class="col-12 tablas">
+              <span class="fs-2">PORTFOLIO</span>
+              <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm agregar" data-bs-toggle="modal" data-bs-target="#proyecto" (click)="editar=false"><i class="bi bi-folder-plus"></i></button>
+              
+              
+              <h5></h5>
 
 
-                    <!-- BOTONES DE EDICION -->
+                <div class="d-flex justify-content-between" >
+                  <!-- TARJETAS -->
+              <div *ngFor="let pr of proyectos" class="card animate__animated animate__fadeInDown" style="width:18rem;">
+                <img src="../../../assets/tarjeta.jpg" class="card-img-top" alt="Imagen del proyecto">
+                <div class="card-body">
 
-                    <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm  edicion" 
-                      (click)="eliminarProyecto(pr.id)">
-                      <i class="bi bi-folder-x"></i>
-                    </button>
                   
-                    <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm  edicion" data-bs-toggle="modal" data-bs-target="#proyecto"
-                      (click)="traerProyecto(pr)">
-                      <i class="bi bi-folder-minus"></i>
-                    </button>
 
-                  </div>
+                  <!-- BOTON QUE ABRE MODAL -->
+                  <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)" (click)="traerImg(pr)">+ INFO</button>
+                  <br>
+
+                  
+
+
+                  <!-- BOTONES DE EDICION -->
+
+                  <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm  edicion" 
+                    (click)="eliminarProyecto(pr.id)">
+                    <i class="bi bi-folder-x"></i>
+                  </button>
+                
+                  <button *ngIf="loginService.isLogged()" type="button" class="btn btn-outline-light btn-sm  edicion" data-bs-toggle="modal" data-bs-target="#proyecto"
+                    (click)="traerProyecto(pr)">
+                    <i class="bi bi-folder-minus"></i>
+                  </button>
+
                 </div>
-                  </div>
-            
+              </div>
+                </div>
+          
+              
+
+          
+          </div>
                 
 
-            
-            </div>
-                  
+      </div>
+      
 
-        </div>
-        
-
-    </div>
-    
+  </div>
+  
 
 <!-- MODAL -->
 <div class="modal fade" id="proyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="proyecto" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 *ngIf="!editar" class="modal-title" id="exampleModalLabel">AGREGAR PROYECTO</h5>
-          <h5 *ngIf="editar" class="modal-title" id="exampleModalLabel">EDITAR PROYECTO</h5>
-          
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 *ngIf="!editar" class="modal-title" id="exampleModalLabel">AGREGAR PROYECTO</h5>
+        <h5 *ngIf="editar" class="modal-title" id="exampleModalLabel">EDITAR PROYECTO</h5>
+        
+        
+      </div>
+      
+      <div class="modal-body">
+       <!-- FORMULARIO -->
+       <form [formGroup]="proyectoForm" (ngSubmit)="agregarProyecto()">
+        
+        
+        
+        <div class="mb-3">
+          <label for="habilidad" class="form-label">TIPO DE PROYECTO</label>
+          <input formControlName="tipo" type="text" class="form-control" id="habilidad" placeholder="CLASIFICACIÓN DEL PROYECTO">
           
         </div>
         
-        <div class="modal-body">
-         <!-- FORMULARIO -->
-         <form [formGroup]="proyectoForm" (ngSubmit)="agregarProyecto()">
-          
-          
-          
-          <div class="mb-3">
-            <label for="habilidad" class="form-label">TIPO DE PROYECTO</label>
-            <input formControlName="tipo" type="text" class="form-control" id="habilidad" placeholder="CLASIFICACIÓN DEL PROYECTO">
             
-          </div>
+        <div class="mb-3">
           
-              
-          <div class="mb-3">
-            
-            <label for="dominio" class="form-label">DESCRIPCIÓN</label>
-            <textarea formControlName="descripcion" class="form-control" aria-label="With textarea" placeholder="DESCIPCIÓN DEL PROYECTO"></textarea>
-            
-          </div>
-
-          <div class="mb-3">
-            
-            <label *ngIf="!editar" for="dominio" class="form-label">SELECCION EL PROYECTO A MOSTRAR</label>
-            <input *ngIf="!editar" class="form-control" type="text"  id="dominio" type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)" >
-            
-            <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
-                        
-            
-          </div>
-          
-          
-        </form>
-      
-      
-  
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProyecto()">ANULAR</button>
-          <button *ngIf="!editar" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="agregarProyecto()" >GUARDAR CAMBIOS</button>
-          <button *ngIf="editar"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="editarProyecto(proyectoForm.value)">ACTUALIZAR</button>
+          <label for="dominio" class="form-label">DESCRIPCIÓN</label>
+          <textarea formControlName="descripcion" class="form-control" aria-label="With textarea" placeholder="DESCIPCIÓN DEL PROYECTO"></textarea>
           
         </div>
+
+        <div class="mb-3">
+          
+          <label *ngIf="!editar" for="dominio" class="form-label">SELECCION EL PROYECTO A MOSTRAR</label>
+          <input *ngIf="!editar" class="form-control" type="text"  id="dominio" type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)" >
+          
+          <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
+                      
+          
+        </div>
+        
+        
+      </form>
+    
+    
+
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProyecto()">ANULAR</button>
+        <button *ngIf="!editar" type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="agregarProyecto()" >GUARDAR CAMBIOS</button>
+        <button *ngIf="editar"  type="submit" class="btn btn-secondary" data-bs-dismiss="modal" [disabled]="proyectoForm.invalid" (click)="editarProyecto(proyectoForm.value)">ACTUALIZAR</button>
+        
       </div>
     </div>
   </div>
-    <!-- MODAL -->
-    <div class="modal fade" id="proyectoModal" tabindex="-1" aria-labelledby="proyectoModal" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
+</div>
+  <!-- MODAL -->
+  <div class="modal fade" id="proyectoModal" tabindex="-1" aria-labelledby="proyectoModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
 
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">TIPO DE PROYECTO: <span class="texto">{{proyecto.tipo}}</span></h1>
-          </div>
-
-          <div class="modal-body">
-            <img [src]="img" class="img-fluid" id="myimg" [alt]=""> 
-            <br>
-          </div>
-          
-          <div class="footer">
-            <p ><span class="coloreado">DESCRIPCIÓN DEL PROYECTO: </span>{{proyecto.descripcion}}</p>
-         </div>
-         
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">TIPO DE PROYECTO: <span class="texto">{{proyecto.tipo}}</span></h1>
         </div>
+
+        <div class="modal-body">
+          <img [src]="img" class="img-fluid" id="myimg" [alt]=""> 
+          <br>
+        </div>
+        
+        <div class="footer">
+          <p ><span class="coloreado">DESCRIPCIÓN DEL PROYECTO: </span>{{proyecto.descripcion}}</p>
+       </div>
+
+       <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="resetProyecto()">CERRAR</button>
+      </div>
+
+
+       
       </div>
     </div>
-    
+  </div>
+  
 
 
-    
+  
 
 </div>
 <!-- EDICIONES -->

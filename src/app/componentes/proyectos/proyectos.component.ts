@@ -77,7 +77,8 @@ public agregarProyecto(){
        this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
       (data)=>{
         console.log(this.proyectoForm.value);});
-        this.proyectoForm.reset()
+      this.proyectoForm.reset();
+        
 }
 
 //ELIMINAR PROYECTO
@@ -152,7 +153,7 @@ obtenerImg(){
     for(let img of res.items ){
       const url= await getDownloadURL(img);
       this.imagenes.push(url);
-      console.log(url);}
+      }
       
     });}
 

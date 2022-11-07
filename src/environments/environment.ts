@@ -11,7 +11,8 @@ export const environment = {
   storageBucket: "portfoliopersonal-2b255.appspot.com",
   messagingSenderId: "99078905890",
   appId: "1:99078905890:web:9fdaba7fc904120084ea7b",
-  measurementId: "G-DQD16L1F5T"
+  measurementId: "G-DQD16L1F5T",
+  
   }
 };
 
