@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import baseUrl from './servicios/base';
 import { LoginServiceService } from './servicios/login-service.service';
 import { UsuarioService } from './servicios/usuario.service';
@@ -69,8 +70,7 @@ export class AppComponent{
         window.location.reload();
       }
 
-    
-   
+  
  
   
 }

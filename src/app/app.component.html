@@ -1,7 +1,7 @@
 <div class="menu-entero">
     <nav class="header navbar navbar-expand-lg fixed-top">
     
-        <div class="container-fluid">
+        <div class="container-fluid" >
         
               <h6> <img src="../../../assets/arg-prog-logo.png" class="logo fs-3" alt=""> <span class="yoprog"> #YoProgramo</span> </h6>
         
@@ -63,11 +63,12 @@
         
         
         <nav class="caja-menu">
+            <p class="portofolio animate__animated animate__fadeIn animate__slower animate__delay-2s">PORTFOLIO</p>
             <h1  *ngFor="let u of user" class="fs-1">{{u.nombre}}</h1>
-            <a class="nav-link active fs-3" routerLink="inicio" routerLinkActive="activo">INICIO</a>
-            <a class="nav-link fs-3" routerLink="sobre-mi" routerLinkActive="activo">SOBRE MI</a>
-            <a class="nav-link fs-3" routerLink="proyectos" routerLinkActive="activo">PROYECTOS</a>
-            <a class="nav-link fs-3" routerLink="contacto" routerLinkActive="activo">CONTACTO</a>
+            <a class="nav-link active fs-3 animax" routerLink="inicio" routerLinkActive="activo animate__animated animate__fadeInLeft">INICIO</a>
+            <a class="nav-link fs-3 animax" routerLink="sobre-mi" routerLinkActive="activo animate__animated animate__fadeInLeft">SOBRE MI</a>
+            <a class="nav-link fs-3 animax" routerLink="proyectos" routerLinkActive="activo animate__animated animate__fadeInLeft">PROYECTOS</a>
+            <a class="nav-link fs-3 animax" routerLink="contacto" routerLinkActive="activo animate__animated animate__fadeInLeft">CONTACTO</a>
 
         </nav>
     

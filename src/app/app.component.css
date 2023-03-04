@@ -101,6 +101,7 @@ footer{
     font-size: smaller;
     padding: 3px;
     text-align: center;
+    margin:0;
 
 
 }
@@ -111,4 +112,9 @@ footer{
 
 .yoprog{
     color: var(--color-sec);
+}
+
+.portofolio{
+    margin:0;
+    color:var(--color-terc);
 }
