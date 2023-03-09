@@ -5,6 +5,9 @@ import { ProyectoServiceService } from 'src/app/servicios/proyecto-service.servi
 import { AngularFireStorage } from  '@angular/fire/compat/storage';
 import { getStorage, ref, listAll, getDownloadURL } from "firebase/storage";
 import { Router } from '@angular/router';
+import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+import * as ClipboardJS from 'clipboard';
 
 @Component({
   selector: 'app-proyectos',
@@ -13,10 +16,14 @@ import { Router } from '@angular/router';
 })
 export class ProyectosComponent implements OnInit {
 
+  
+
   public proyectoForm:FormGroup;
   proyectos:any =[];
   editar:boolean= false;
   mostrar:boolean= false;
+ 
+  
 
   proyectoEdit:any={
     id:"",
@@ -30,8 +37,8 @@ export class ProyectosComponent implements OnInit {
     descripcion:"",
     multimedia:""};
 
-    imagenes:string[]=[];
-    img:string="";
+    
+    
 
     fotos:any={
       id:"",
@@ -47,7 +54,9 @@ export class ProyectosComponent implements OnInit {
     private formBuilder: FormBuilder,
     public proyectoService : ProyectoServiceService,
     private storage:AngularFireStorage,
-    private router : Router
+    private router : Router,
+    
+        
 
   ) {
 
@@ -55,11 +64,16 @@ export class ProyectosComponent implements OnInit {
       id: new FormControl (""),
       tipo: new FormControl ("",[Validators.required,]),
       descripcion: new FormControl ("",[Validators.required]),
-      multimedia: new FormControl (""),
+      multimedia: new FormControl ("",[Validators.required]),
+      archivoElegido: new FormControl ("",),
+      Urlcarga: new FormControl ("",),
       updateOn: 'change'
    });
-
+   
 }
+
+porcentajeCarga!: Observable<number>;
+urlImagen!: Observable<string>;
 
   ngOnInit(): void {
 
@@ -68,18 +82,21 @@ export class ProyectosComponent implements OnInit {
     (data:any)=>{
       this.proyectos= data;});
 
-    this.obtenerImg();
+      //MODULO PARA LIBRERIA CLIPBOARDJS
+      new ClipboardJS('.btn');
+    
+
+    
 }
 
 //AGREGAR PROYECTO
 public agregarProyecto(){ 
-  
-       this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
+     this.proyectoService.agregarProyecto(this.proyectoForm.value).subscribe(
       (data)=>{
         console.log(this.proyectoForm.value);});
-      this.proyectoForm.reset();
-        
+      this.proyectoForm.reset();        
 }
+
 
 //ELIMINAR PROYECTO
 eliminarProyecto(proyectoId:any){
@@ -140,34 +157,11 @@ alCargar(e:any){
   const file= e.target.files[0];
   const filePath= id;
   const ref= this.storage.ref(filePath);
-  const upload= this.storage.upload(filePath,file);
-  
-}
-
-obtenerImg(){
-  const almacenamiento=getStorage();
-  const imgRef= ref(almacenamiento);
-  
-  listAll(imgRef).then(async (res) => {
-    this.imagenes=[];
-    for(let img of res.items ){
-      const url= await getDownloadURL(img);
-      this.imagenes.push(url);
-      }
-      
-    });}
+  const upload= this.storage.upload(filePath,file); 
+  upload.snapshotChanges().pipe(finalize(() => this.urlImagen = ref.getDownloadURL())).subscribe();
+  }
 
 
-traerImg(a:any){
-  const storage = getStorage();
-  const b= a.multimedia.replace("C:\\fakepath\\", "");
-  getDownloadURL(ref(storage, b))
-  .then((url) => {
-    this.img=""
-    this.img= url;
-  })
-  
-}
 
 
 

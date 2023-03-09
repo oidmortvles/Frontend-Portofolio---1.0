@@ -124,3 +124,10 @@ button:hover{
 .coloreado{
     color: var(--color-sec);
 }
+
+.escalarImagen{
+    width:auto ;
+    height:17rem ;
+    object-fit: cover; 
+}
+

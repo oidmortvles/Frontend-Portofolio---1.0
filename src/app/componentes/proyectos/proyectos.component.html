@@ -14,14 +14,14 @@
 
                 <div class="d-flex justify-content-between" >
                   <!-- TARJETAS -->
-              <div *ngFor="let pr of proyectos" class="card animate__animated animate__fadeInDown" style="width:18rem;">
-                <img src="../../../assets/tarjeta.jpg" class="card-img-top" alt="Imagen del proyecto">
+                  <div *ngFor="let pr of proyectos; let im = index" class="card animate__animated animate__fadeInDown h-100" style="width:18rem;">
+                    <img [src]="pr.multimedia" class="card-img-top escalarImagen" alt="Imagen del proyecto">
                 <div class="card-body">
                   <!--  -->
                   
 
                   <!-- BOTON QUE ABRE MODAL -->
-                  <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)" (click)="traerImg(pr)">+ INFO</button>
+                  <button type="button" class="btn btn-outline-light btn-sm expandir" data-bs-toggle="modal" data-bs-target="#proyectoModal" (click)="mostrarModal(pr)">+ INFO</button>
                   <br>
 
                   
@@ -88,9 +88,20 @@
 
         <div class="mb-3">
           
-          <label *ngIf="!editar" for="dominio" class="form-label">SELECCION EL PROYECTO A MOSTRAR</label>
-          <input *ngIf="!editar" class="form-control" type="text"  id="dominio" type="file" accept=".png, .jpg" formControlName="multimedia" (change)="alCargar($event)" >
+          <label *ngIf="!editar" for="dominio" class="form-label">SELECCIÓN DEL PROYECTO A MOSTRAR</label>
+          <input *ngIf="!editar" class="form-control" type="text" type="file" accept=".png, .jpg" formControlName="archivoElegido" (change)="alCargar($event)" >
           
+
+          <div *ngIf="!editar" class="input-group mb-3">
+            <input *ngIf="urlImagen | async" type="text" type="text"  class="form-control" value="{{urlImagen | async}}"  id="storageUrl" readonly formControlName="Urlcarga" placeholder="URL del archivo cargado">
+            <button *ngIf="urlImagen | async" class="btn btn-outline-secondary botonCopy"  type="button" id="button-addon2"  data-clipboard-target="#storageUrl">Copiar URL</button>
+              
+          </div>  
+
+          
+          
+          <input *ngIf="!editar"  class="form-control" type="text" id="dominio" formControlName="multimedia" placeholder="Ingrese la URL del archivo o aguarde a que se genere una">
+
           <p *ngIf="mostrar"> NÚMERO DE REGISTRO: {{proyectoEdit.id}}</p>
                       
           
@@ -121,7 +132,7 @@
         </div>
 
         <div class="modal-body">
-          <img [src]="img" class="img-fluid" id="myimg" [alt]=""> 
+          <img [src]="proyecto.multimedia" class="img-fluid" id="myimg" [alt]=""> 
           <br>
         </div>
         

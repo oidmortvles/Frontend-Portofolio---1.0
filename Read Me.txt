@@ -1,0 +1,5 @@
+base sql: clever cloud
+backend: koyeb
+firebase: https://portfoliopersonal-2b255.web.app/inicio
+cuenta usada en firebase para desplegar: dann.pereyra@gmail.com
+carpeta de firebase desplegada : porto/firebase/public

@@ -26,6 +26,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { AngularFireModule } from '@angular/fire/compat';
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireStorageModule,
+  
     
     
     
